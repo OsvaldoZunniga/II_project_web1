@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Usuario extends Model{
+class User extends Model{
     use HasFactory;
 
     protected $table = 'usuarios';
@@ -37,7 +37,7 @@ class Usuario extends Model{
         'idRoles' => 'integer'
     ];
     public function role(){
-        return $this->belongsTo(Roles::class, 'idRoles', 'idRoles');
+        return $this->belongsTo(Role::class, 'idRoles', 'idRoles');
     }
 
 }
