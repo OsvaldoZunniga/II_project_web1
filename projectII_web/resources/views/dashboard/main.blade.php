@@ -23,7 +23,22 @@
                 </div>
             @elseif($msg == 'ride_success')
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Ride registrado exitosamente.
+                    <i class="fas fa-check-circle me-2"></i>Ride registrado exitosamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @elseif($msg == 'ride_updated')
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>Ride actualizado exitosamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @elseif($msg == 'ride_deleted')
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>Ride eliminado exitosamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @elseif($msg == 'ride_not_found')
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Ride no encontrado.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @elseif($msg == 'vehicle_added')

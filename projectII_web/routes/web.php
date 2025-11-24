@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RideController;
 
 // Autenticación
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -36,6 +37,16 @@ Route::middleware('auth.user')->group(function () {
 Route::middleware('auth.user')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+// Rutas de rides (protegidas con middleware)
+Route::middleware('auth.user')->group(function () {
+    Route::get('/rides/add', [RideController::class, 'showAddForm'])->name('rides.add');
+    Route::post('/rides/store', [RideController::class, 'store'])->name('rides.store');
+    Route::get('/rides/my', [RideController::class, 'myRides'])->name('rides.my');
+    Route::get('/rides/{id}/edit', [RideController::class, 'edit'])->name('rides.edit');
+    Route::put('/rides/{id}', [RideController::class, 'update'])->name('rides.update');
+    Route::delete('/rides/{id}', [RideController::class, 'destroy'])->name('rides.destroy');
 });
 
 

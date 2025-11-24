@@ -25,8 +25,8 @@
             <i class="fas fa-route me-1"></i>Mis Rides
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-plus me-1"></i>Crear un Ride</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-list me-1"></i>Ver Mis Rides</a></li>
+            <li><a class="dropdown-item" href="{{ route('rides.add') }}"><i class="fas fa-plus me-1"></i>Crear un Ride</a></li>
+            <li><a class="dropdown-item" href="{{ route('rides.my') }}"><i class="fas fa-list me-1"></i>Ver Mis Rides</a></li>
             <li><a class="dropdown-item" href="#"><i class="fas fa-clipboard-list me-1"></i>Ver Mis Reservaciones</a></li>
           </ul>
         </li>
