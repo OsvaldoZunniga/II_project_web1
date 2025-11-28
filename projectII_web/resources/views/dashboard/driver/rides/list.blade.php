@@ -21,7 +21,7 @@
               </div>
             @else
               @foreach($rides as $ride)
-                @include('dashboard.rides.card', ['ride' => $ride])
+                @include('components.ride-card-driver', ['ride' => $ride])
               @endforeach
             @endif            
           </div>
