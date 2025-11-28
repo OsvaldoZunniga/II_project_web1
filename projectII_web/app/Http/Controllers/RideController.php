@@ -30,7 +30,7 @@ class RideController extends Controller
         $vehicles = $this->vehicleService->getUserVehicles();
         
         return view('dashboard.main', [
-            'content' => 'rides.add',
+            'content' => 'driver.rides.add',
             'user' => $user,
             'vehicles' => $vehicles
         ]);
@@ -65,7 +65,7 @@ class RideController extends Controller
         $rides = $this->rideService->getUserRides();
 
         return view('dashboard.main', [
-            'content' => 'rides.list',
+            'content' => 'driver.rides.list',
             'rides' => $rides,
             'user' => $user
         ]);
@@ -103,7 +103,7 @@ class RideController extends Controller
         $vehicles = $this->vehicleService->getUserVehicles();
         
         return view('dashboard.main', [
-            'content' => 'rides.edit',
+            'content' => 'driver.rides.edit',
             'user' => $user,
             'ride' => $ride,
             'vehicles' => $vehicles
