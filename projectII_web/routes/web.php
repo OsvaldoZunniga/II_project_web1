@@ -59,6 +59,7 @@ Route::middleware('auth.user')->group(function () {
 // Rutas para paneles de pasajeros (protegidas con middleware)
 Route::middleware('auth.user')->group(function () {
     Route::get('/passenger/search-rides', [PassengerController::class, 'searchRides'])->name('passenger.search.rides');
+    //routes without implementation yet
     Route::get('/passenger/my-reservations', [PassengerController::class, 'myReservations'])->name('passenger.reservations');
     Route::get('/passenger/my-trips', [PassengerController::class, 'myTrips'])->name('passenger.trips');
 });
