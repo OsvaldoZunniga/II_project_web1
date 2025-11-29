@@ -58,14 +58,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+
+# Notes #
+**Para inicializar el proyecto se debe ejecutar**
+```
+php artisan migrate
+```
+
+Esto para que se creen las tablas complementarias a la base de datos.
+
+
+
 # In Charge of: #
 ### Coffe ###
-- CRUD Users
+- ~~CRUD Users~~
 - Admin
-- rides
+- ~~rides~~ agregar boton para que el chofer inicialice ride
 - Reservas
 ### BranchK ###
-- Registro
-- logIN
-- Vehiculos
-- publicPage
+- ~~Registro~~
+- ~~logIN~~
+- ~~Vehiculos~~
+- ~~publicPage~~
