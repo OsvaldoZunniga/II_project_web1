@@ -17,7 +17,7 @@
             // Crear la reserva
             $booking = new Booking();
             $booking->idUsuario = $idUsuario;
-            $booking->ride_id = $rideId;
+            $booking->idRide = $rideId;
             $booking->save();
 
             return ['success' => true, 'booking_id' => $booking->id];
