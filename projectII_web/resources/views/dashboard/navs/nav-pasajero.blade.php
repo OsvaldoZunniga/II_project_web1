@@ -12,22 +12,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" href="{{ route('passenger.search.rides') }}">
             <i class="fas fa-search me-1"></i>Buscar Rides
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-eye me-1"></i>Ver Rides
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" href="{{ route('passenger.reservations') }}">
             <i class="fas fa-paper-plane me-1"></i>Mis Solicitudes de Reserva
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" href="{{ route('passenger.trips') }}">
             <i class="fas fa-check-circle me-1"></i>Mis Viajes
           </a>
         </li>

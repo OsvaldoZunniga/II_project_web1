@@ -21,7 +21,7 @@
               </div>
             @else
               @foreach($vehicles as $vehicle)
-                @include('dashboard.vehicles.card', ['vehiculo' => $vehicle])
+                @include('dashboard.driver.vehicles.card', ['vehiculo' => $vehicle])
               @endforeach
             @endif
           </div>

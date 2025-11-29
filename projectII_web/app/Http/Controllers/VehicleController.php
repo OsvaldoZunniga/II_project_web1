@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Services\VehicleService;
 use App\Services\AuthService;
@@ -24,7 +23,7 @@ class VehicleController extends Controller
         $user = $authService->getAuthenticatedUser();
         
         return view('dashboard.main', [
-            'content' => 'vehicles.add',
+            'content' => 'driver.vehicles.add',
             'user' => $user
         ]);
     }
@@ -58,7 +57,7 @@ class VehicleController extends Controller
         $vehicles = $this->vehicleService->getUserVehicles();
 
         return view('dashboard.main', [
-            'content' => 'vehicles.list',
+            'content' => 'driver.vehicles.list',
             'vehicles' => $vehicles,
             'user' => $user
         ]);
@@ -80,7 +79,7 @@ class VehicleController extends Controller
         }
 
         return view('dashboard.main', [
-            'content' => 'vehicles.edit',
+            'content' => 'driver.vehicles.edit',
             'vehicle' => $vehicle,
             'user' => $user
         ]);

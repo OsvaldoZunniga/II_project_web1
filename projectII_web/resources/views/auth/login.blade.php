@@ -78,7 +78,7 @@
             </form>
             <div class="mt-4">
                 <p class="mb-2">¿No tienes una cuenta? <a href="{{ route('register') }}" class="text-white-50 fw-bold">Regístrate aquí</a></p>
-                <p class="mb-0 text-center"><a href="#" class="text-white-50 fw-bold"><i class="fas fa-eye me-1"></i>Ver Rides Disponibles</a></p>
+                <p class="mb-0 text-center"><a href="{{ route('public.rides') }}" class="text-white-50 fw-bold"><i class="fas fa-eye me-1"></i>Ver Rides Disponibles</a></p>
             </div>
         </div>
     </div>
