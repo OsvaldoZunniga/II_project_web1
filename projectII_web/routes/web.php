@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VehicleController;
@@ -54,6 +55,7 @@ Route::middleware('auth.user')->group(function () {
     Route::delete('/rides/{id}', [RideController::class, 'destroy'])->name('rides.destroy');
 });
 
+
 // Rutas para paneles de pasajeros (protegidas con middleware)
 Route::middleware('auth.user')->group(function () {
     Route::get('/passenger/search-rides', [PassengerController::class, 'searchRides'])->name('passenger.search.rides');
@@ -62,5 +64,9 @@ Route::middleware('auth.user')->group(function () {
 });
 
 
+// Rutas de reservas
+Route::middleware('auth.user')->group(function () {
+    Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+});
 
 
