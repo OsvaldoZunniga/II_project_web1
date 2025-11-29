@@ -65,7 +65,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 php artisan migrate
 ```
 
-Esto para que se creen las tablas complementarias a la base de datos.
+Esto creará las tablas faltantes a la base de datos.
 
 
 
