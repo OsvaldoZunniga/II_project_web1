@@ -55,7 +55,7 @@
         {
             $booking = $this->bookingService->cancelBooking($id);
 
-        return redirect()->back()
+        return redirect()->route('bookings.reservations')
                 ->with('msg', 'booking_cancelled')
                 ->with('type', 'success');
         }
