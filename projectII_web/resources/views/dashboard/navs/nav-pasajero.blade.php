@@ -17,12 +17,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{ route('passenger.reservations') }}">
+          <a class="nav-link text-white" href="{{ route('bookings.reservations') }}">
             <i class="fas fa-paper-plane me-1"></i>Mis Solicitudes de Reserva
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{ route('passenger.trips') }}">
+          <a class="nav-link text-white" href="">
             <i class="fas fa-check-circle me-1"></i>Mis Viajes
           </a>
         </li>
