@@ -38,5 +38,26 @@
                 ->with('msg', $result['message'])
                 ->with('type', 'error');
         }
+        public function getReservations(Request $request)
+        {
+            $authService = app(AuthService::class);
+            $user = $authService->getAuthenticatedUser();
+
+            $bookings = $this->bookingService->getBookingsByUser($user['idUsuario'])->load('ride');
+
+            return view('dashboard.main', [
+                'content' => 'passenger.my-reservations',
+                'user' => $user,
+                'bookings' => $bookings
+            ]);
+        }
+        public function cancel($id)
+        {
+            $booking = $this->bookingService->cancelBooking($id);
+
+        return redirect()->back()
+                ->with('msg', 'booking_cancelled')
+                ->with('type', 'success');
+        }
     }
 ?>

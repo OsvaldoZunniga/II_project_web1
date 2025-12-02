@@ -22,5 +22,21 @@
 
             return ['success' => true, 'booking_id' => $booking->id];
         }
+        public function getBookingsByUser($idUsuario)
+        {
+            return Booking::
+                    where('idUsuario', $idUsuario)
+                    ->with('ride')
+                    ->get();
+        }
+        public function cancelBooking($id)
+        {
+            $booking = Booking::find($id);
+            if ($booking) {
+                $booking->estado = 'Cancelada';
+                $booking->save();
+            }
+            return $booking;
+        }
     }
 ?>
