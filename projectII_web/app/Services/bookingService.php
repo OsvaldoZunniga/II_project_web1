@@ -24,10 +24,14 @@
         }
         public function getBookingsByUser($idUsuario)
         {
-            return Booking::
-                    where('idUsuario', $idUsuario)
-                    ->with('ride')
-                    ->get();
+                        return Booking::
+                                        where('idUsuario', $idUsuario)
+                                        ->whereHas('ride', function($q){
+                                                $q->whereRaw('LOWER(estado) <> ?', ['realizado'])
+                                                    ->whereDate('fecha', '>=', now()->toDateString());
+                                        })
+                                        ->with('ride')
+                                        ->get();
         }
         public function cancelBooking($id)
         {
