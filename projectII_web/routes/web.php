@@ -64,11 +64,14 @@ Route::middleware('auth.user')->group(function () {
 
 // Rutas de reservas
 Route::middleware('auth.user')->group(function () {
+    //Booking for passengers
     Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/my-reservations', [BookingController::class, 'getReservations'])->name('bookings.reservations');
     Route::post('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
-    //routes without implementation yet
-    Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
+    //Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
+
+    //Booking for drivers
+    Route::get('/bookings/reservationsDriver', [BookingController::class, 'getReservationsDriver'])->name('bookings.driver.reservations');
 });
 
 

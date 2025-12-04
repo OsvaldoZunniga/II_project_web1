@@ -59,5 +59,18 @@
                 ->with('msg', 'booking_cancelled')
                 ->with('type', 'success');
         }
+        public function getReservationsDriver(Request $request)
+        {
+            $authService = app(AuthService::class);
+            $user = $authService->getAuthenticatedUser();
+
+            $bookings = $this->bookingService->getBookingsByDriver($user['idUsuario']);
+
+            return view('dashboard.main', [
+                'content' => 'driver.reservations.reservations',
+                'user' => $user,
+                'bookings' => $bookings
+            ]);
+        }
     }
 ?>
