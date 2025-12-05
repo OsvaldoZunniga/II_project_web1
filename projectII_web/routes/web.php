@@ -77,4 +77,8 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/bookings/reservationsDriver', [BookingController::class, 'getReservationsDriver'])->name('bookings.driver.reservations');
 });
 
-
+// Rutas de admin
+Route::middleware('auth.user')->group(function () {
+    Route::get('/admin/add', [UserController::class, 'showAddAdminForm'])->name('admin.add.form');
+    Route::post('/admin/add', [UserController::class, 'storeAdmin'])->name('admin.add');
+});

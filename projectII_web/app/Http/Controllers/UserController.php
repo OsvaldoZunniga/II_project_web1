@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\AuthService;
 
 class UserController extends Controller
 {
@@ -70,4 +71,20 @@ class UserController extends Controller
         
         return redirect()->route('login')->with('msg', $result);
     }
+    /*
+        AdminSection
+    */ 
+    public function showAddAdminForm()
+    {
+        $authService = app(AuthService::class);
+        $user = $authService->getAuthenticatedUser();
+
+        return view('dashboard.main', [
+                'content' => 'admin.add',
+                'user' => $user
+            ]);
+    }
+
+
+
 }
