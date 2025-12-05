@@ -74,6 +74,9 @@ class UserController extends Controller
     /*
         AdminSection
     */ 
+    
+
+    /*Mostrar Form para ingresar nuevos Admins*/
     public function showAddAdminForm()
     {
         $authService = app(AuthService::class);
@@ -81,6 +84,17 @@ class UserController extends Controller
 
         return view('dashboard.main', [
                 'content' => 'admin.add',
+                'user' => $user
+            ]);
+    }
+    /*Mostrar Form para desactivar usuarios*/
+    public function showDesactivateUsersForm()
+    {
+        $authService = app(AuthService::class);
+        $user = $authService->getAuthenticatedUser();
+
+        return view('dashboard.main', [
+                'content' => 'admin.desactivate-users',
                 'user' => $user
             ]);
     }

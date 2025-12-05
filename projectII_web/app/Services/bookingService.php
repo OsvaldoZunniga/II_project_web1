@@ -23,6 +23,7 @@
 
             return ['success' => true, 'booking_id' => $booking->id];
         }
+        /*Obtiene bookings por usuario*/
         public function getBookingsByUser($idUsuario)
         {
             return Booking::
@@ -34,6 +35,7 @@
                             ->with('ride')
                             ->get();
         }
+        /*Cancela un Booking*/
         public function cancelBooking($id)
         {
             $booking = Booking::find($id);
@@ -43,7 +45,7 @@
             }
             return $booking;
         }
-
+        /*Acepta un Booking*/
         public function acceptBooking($id)
         {
             $booking = Booking::find($id);
@@ -54,7 +56,7 @@
             return $booking;
         }
 
-
+        /*Obtiene bookings por conductor*/
         public function getBookingsByDriver($idUsuario)
         {
             $today = now()->toDateString();

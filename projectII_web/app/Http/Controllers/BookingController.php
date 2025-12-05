@@ -37,6 +37,7 @@
                 ->with('msg', $result['message'])
                 ->with('type', 'error');
         }
+        /*Obtiene Bookings pendientes por pasajero*/
         public function getReservations(Request $request)
         {
             $authService = app(AuthService::class);
@@ -50,6 +51,7 @@
                 'bookings' => $bookings
             ]);
         }
+        /*Obtiene Bookings por conductor*/
         public function getReservationsDriver(Request $request)
         {
             $authService = app(AuthService::class);
@@ -63,6 +65,7 @@
                 'bookings' => $bookings
             ]);
         }
+        /*Cambia el estado de un booking a Cancelado*/
         public function cancel($id)
         {
             $this->bookingService->cancelBooking($id);
@@ -71,7 +74,7 @@
                 ->with('msg', 'booking_cancelled')
                 ->with('type', 'success');
         }
-
+        /*Cambia el estado de un booking a Aceptado*/
         public function accept($id)
         {
             $this->bookingService->acceptBooking($id);
