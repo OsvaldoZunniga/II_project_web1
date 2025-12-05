@@ -53,9 +53,7 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/rides/{id}/edit', [RideController::class, 'edit'])->name('rides.edit');
     Route::put('/rides/{id}', [RideController::class, 'update'])->name('rides.update');
     Route::delete('/rides/{id}', [RideController::class, 'destroy'])->name('rides.destroy');
-
     Route::get('/rides/{id}/start', [RideController::class, 'iniciarRide'])->name('rides.start');
-
     Route::get('/rides/realized', [RideController::class, 'realizedRides'])->name('rides.realized');
 });
 

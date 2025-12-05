@@ -296,5 +296,32 @@ class RideService
 
         return ['success' => true, 'ride' => $ride];
     }
+    public function getRealizedRidesByDriver($idUsuario): array
+    {
+        return Ride::select([
+                'r.idRide',
+                'r.idVehiculo',
+                'r.nombre',
+                'r.salida',
+                'r.llegada',
+                'r.hora',
+                'r.fecha',
+                'r.espacios',
+                'r.costo_espacio',
+                'v.marca',
+                'v.modelo',
+                'v.color'
+            ])
+            ->from('ride as r')
+            ->join('vehiculos as v', 'r.idVehiculo', '=', 'v.idVehiculo')
+            ->join('usuarios as u', 'v.idUsuario', '=', 'u.idUsuario')
+            ->where('u.idUsuario', $idUsuario)
+            ->where('u.estado', 'Activo')
+            ->where('r.estado', 'Realizado')
+            ->whereNotNull('v.idVehiculo')
+            ->orderBy('r.idRide', 'DESC')
+            ->get()
+            ->toArray();
+    }
 
 }
