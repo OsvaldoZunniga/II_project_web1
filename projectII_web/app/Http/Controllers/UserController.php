@@ -93,10 +93,29 @@ class UserController extends Controller
         $authService = app(AuthService::class);
         $user = $authService->getAuthenticatedUser();
 
+        $usersList = $this->userService->getAllUsersWithRole();
+
         return view('dashboard.main', [
                 'content' => 'admin.desactivate-users',
-                'user' => $user
+                'user' => $user,
+                'usersList' => $usersList
             ]);
+    }
+    /*Desactiva un usuario*/
+    public function desactivateUser($idUsuario){
+        $this->userService->desactivateUserById($idUsuario);
+
+        return redirect()->back()
+                ->with('msg', 'user_desactivated')
+                ->with('type', 'success');
+    }
+    /*Activa un usuario*/
+    public function activateUser($idUsuario){
+        $this->userService->activateUserById($idUsuario);
+        
+        return redirect()->back()
+                ->with('msg', 'user_activated')
+                ->with('type', 'success');
     }
 
 

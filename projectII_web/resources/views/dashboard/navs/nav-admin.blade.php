@@ -17,7 +17,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{ route('admin.desactivate.users') }}">
+          <a class="nav-link text-white" href="{{route('admin.desactivate.users.form')}}">
             <i class="fas fa-user-times me-1"></i>Desactivar Usuarios
           </a>
         </li>

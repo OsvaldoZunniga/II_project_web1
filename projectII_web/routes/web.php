@@ -80,5 +80,8 @@ Route::middleware('auth.user')->group(function () {
 // Rutas de admin
 Route::middleware('auth.user')->group(function () {
     Route::get('/admin/add', [UserController::class, 'showAddAdminForm'])->name('admin.add.form');
-    Route::post('/admin/add', [UserController::class, 'storeAdmin'])->name('admin.add');
+    //El store se hace con la misma funcion del register normal
+    Route::get('/admin/desactivate-users', [UserController::class, 'showDesactivateUsersForm'])->name('admin.desactivate.users.form');
+    Route::post('/admin/{id}/desactivate-user', [UserController::class, 'desactivateUser'])->name('admin.desactivate.user');
+    Route::post('/admin/{id}/activate-user', [UserController::class, 'activateUser'])->name('admin.activate.user');
 });
