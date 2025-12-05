@@ -72,7 +72,7 @@ Esto creará las tablas faltantes a la base de datos.
 # In Charge of: #
 ### Coffe ###
 - ~~CRUD Users~~
-- Admin
+- ~~Admin~~
 - ~~rides~~ agregar boton para que el chofer inicialice ride
 - ~~Reservas~~
 ### BranchK ###
