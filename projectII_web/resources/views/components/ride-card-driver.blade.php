@@ -14,4 +14,7 @@
             ])
         </div>
     </a>
+    <a href="{{ route('rides.start', $rideData['idRide']) }}" class="btn btn-success w-100 mt-2">
+        <i class="fas fa-play me-2"></i>Iniciar Ride
+    </a>
 </div>

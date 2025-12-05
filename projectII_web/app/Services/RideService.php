@@ -283,6 +283,18 @@ class RideService
         }
     }
 
-    
+    public function iniciarRide($idRide): array
+    {
+        
+        $ride = Ride::find($idRide);
+        if (!$ride) {
+            return ['success' => false, 'message' => 'Ride no encontrado'];
+        }
+
+        $ride->estado = 'Realizado';
+        $ride->save();
+
+        return ['success' => true, 'ride' => $ride];
+    }
 
 }

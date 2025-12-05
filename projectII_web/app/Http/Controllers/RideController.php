@@ -146,4 +146,18 @@ class RideController extends Controller
             ->with('msg', 'ride_error')
             ->with('type', 'error');
     }
+    public function iniciarRide($idRide)
+    {
+        $result = $this->rideService->iniciarRide($idRide);
+
+        if ($result['success']) {
+            return redirect()->back()
+                ->with('msg', 'ride_started')
+                ->with('type', 'success');
+        }
+
+        return redirect()->back()
+            ->with('msg', 'ride_error')
+            ->with('type', 'error');
+    }
 }
