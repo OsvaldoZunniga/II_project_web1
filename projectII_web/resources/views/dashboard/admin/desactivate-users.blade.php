@@ -29,7 +29,7 @@
                   <td>{{ $user['correo'] }}</td>
                   <td>{{ $user['nombreRol'] }}</td>
                   <td>
-                    @if($user['estado'] === 'Inactivo')
+                    @if($user['estado'] === 'Inactivo' || $user['estado'] === 'Pendiente')
                       <form method="POST" action="{{ route('admin.activate.user', $user['idUsuario']) }}" style="display:inline;">
                         @csrf
                         <button type="submit" class="btn btn-success btn-sm">Activar</button>

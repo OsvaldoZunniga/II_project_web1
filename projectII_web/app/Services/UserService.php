@@ -127,6 +127,7 @@ class UserService
         $user = User::find($idUsuario);
         if ($user) {
             $user->estado = 'Activo';
+            $user->token = null;
             $user->save();
         }
     }
