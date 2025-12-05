@@ -78,6 +78,8 @@ class RideService
             ->join('usuarios as u', 'v.idUsuario', '=', 'u.idUsuario')
             ->where('u.idUsuario', $idUsuario)
             ->where('u.estado', 'Activo')
+            ->where('r.estado', 'Pendiente')
+
             ->whereNotNull('v.idVehiculo')
             ->orderBy('r.idRide', 'DESC')
             ->get()
@@ -280,4 +282,7 @@ class RideService
             return [];
         }
     }
+
+    
+
 }
