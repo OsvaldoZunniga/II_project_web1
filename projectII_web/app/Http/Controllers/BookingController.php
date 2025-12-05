@@ -29,8 +29,7 @@
             );
 
             if ($result['success']) {
-                return redirect()->route('dashboard')
-                    ->with('msg', 'booking_created')
+                return redirect()->back()
                     ->with('type', 'success');
             }
 
@@ -51,26 +50,36 @@
                 'bookings' => $bookings
             ]);
         }
-        public function cancel($id)
-        {
-            $booking = $this->bookingService->cancelBooking($id);
-
-        return redirect()->route('bookings.reservations')
-                ->with('msg', 'booking_cancelled')
-                ->with('type', 'success');
-        }
         public function getReservationsDriver(Request $request)
         {
             $authService = app(AuthService::class);
             $user = $authService->getAuthenticatedUser();
-
+            
             $bookings = $this->bookingService->getBookingsByDriver($user['idUsuario']);
-
+            
             return view('dashboard.main', [
                 'content' => 'driver.reservations.reservations',
                 'user' => $user,
                 'bookings' => $bookings
             ]);
         }
+        public function cancel($id)
+        {
+            $this->bookingService->cancelBooking($id);
+    
+        return redirect()->back()
+                ->with('msg', 'booking_cancelled')
+                ->with('type', 'success');
+        }
+
+        public function accept($id)
+        {
+            $this->bookingService->acceptBooking($id);
+            return redirect()->back()
+                ->with('msg', 'booking_cancelled')
+                ->with('type', 'success');
+        }
+
+        
     }
-?>
+    ?>

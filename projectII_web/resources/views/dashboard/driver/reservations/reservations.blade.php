@@ -38,11 +38,11 @@
                             <i class="far fa-clock ms-2 me-1"></i> {{ $b['hora'] ?? '—' }}
                         </div>
                         <div class="mt-auto d-flex justify-content-end gap-2">
-                            <form method="POST" action="#', $b['idReserva']) }}">
+                            <form method="POST" action="{{ route('bookings.accept', $b['idReserva']) }}">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm px-3">Aceptar</button>
                             </form>
-                            <form method="POST" action="#', $b['idReserva']) }}">
+                            <form method="POST" action="{{ route('bookings.cancel', $b['idReserva']) }}">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm px-3">Cancelar</button>
                             </form>

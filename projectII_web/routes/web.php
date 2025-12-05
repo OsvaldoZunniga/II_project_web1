@@ -53,6 +53,10 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/rides/{id}/edit', [RideController::class, 'edit'])->name('rides.edit');
     Route::put('/rides/{id}', [RideController::class, 'update'])->name('rides.update');
     Route::delete('/rides/{id}', [RideController::class, 'destroy'])->name('rides.destroy');
+
+    Route::get('/rides/{id}/start', [RideController::class, 'iniciarRide'])->name('rides.start');
+
+    Route::get('/rides/realized', [RideController::class, 'realizedRides'])->name('rides.realized');
 });
 
 
@@ -68,6 +72,7 @@ Route::middleware('auth.user')->group(function () {
     Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/my-reservations', [BookingController::class, 'getReservations'])->name('bookings.reservations');
     Route::post('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
+    Route::post('/bookings/{id}/accept', [BookingController::class, 'accept'])->name('bookings.accept');
     //Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
 
     //Booking for drivers

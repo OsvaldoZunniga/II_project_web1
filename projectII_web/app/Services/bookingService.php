@@ -43,6 +43,18 @@
             }
             return $booking;
         }
+
+        public function acceptBooking($id)
+        {
+            $booking = Booking::find($id);
+            if ($booking) {
+                $booking->estado = 'Aceptado';
+                $booking->save();
+            }
+            return $booking;
+        }
+
+
         public function getBookingsByDriver($idUsuario)
         {
             $today = now()->toDateString();
