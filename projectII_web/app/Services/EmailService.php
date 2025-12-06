@@ -32,13 +32,12 @@ class EmailService
             $mail->isHTML(true);
             $mail->Subject = 'Activar cuenta';
             
-            $activationLink = "http://proyecto02.com/activate?email={$usuario->correo}&token={$usuario->token}";
+            $activationLink = "http://proyecto02.com/activate?email=" . urlencode($usuario->correo) . "&token=" . urlencode($usuario->token);
             $mail->Body = $this->getActivationEmailTemplate($usuario->nombre, $activationLink);
 
             return $mail->send();
             
         } catch (Exception $e) {
-            // Log del error (opcional)
             error_log("Error enviando correo: " . $e->getMessage());
             return false;
         }
