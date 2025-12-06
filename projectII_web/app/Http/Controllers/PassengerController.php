@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\RideService;
 use App\Services\AuthService;
+use App\Services\AuditService;
 
 class PassengerController extends Controller
 {
     protected $rideService;
     protected $authService;
+    protected $auditService;
 
-    public function __construct(RideService $rideService, AuthService $authService)
+    public function __construct(RideService $rideService, AuthService $authService, AuditService $auditService)
     {
         $this->rideService = $rideService;
         $this->authService = $authService;
+        $this->auditService = $auditService;
     }
 
     /**
@@ -38,7 +41,7 @@ class PassengerController extends Controller
         
         //Aqui se guardará los datos para auditoria de busqueda de rides
         if ($request['search-button'] === 'is-pressed') {
-            $this->rideService->guardarAuditoriaBusqueda($user, $filtros, $rides);
+            $this->auditService->guardarAuditoriaBusqueda($user, $filtros, $rides);
         }
         // Devolver vista del dashboard main con el contenido de búsqueda
         return view('dashboard.main', [

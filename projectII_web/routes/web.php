@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
@@ -84,4 +85,5 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/admin/desactivate-users', [UserController::class, 'showDesactivateUsersForm'])->name('admin.desactivate.users.form');
     Route::post('/admin/{id}/desactivate-user', [UserController::class, 'desactivateUser'])->name('admin.desactivate.user');
     Route::post('/admin/{id}/activate-user', [UserController::class, 'activateUser'])->name('admin.activate.user');
+    Route::get('/admin/reports', [AuditController::class, 'getAudits'])->name('admin.reports');
 });

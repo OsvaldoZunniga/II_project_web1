@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a class="nav-link text-white" href="{{ route('admin.reports') }}">
             <i class="fas fa-chart-bar me-1"></i>Reportes
           </a>
         </li>
