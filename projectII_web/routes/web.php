@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VehicleController;
@@ -52,15 +54,36 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/rides/{id}/edit', [RideController::class, 'edit'])->name('rides.edit');
     Route::put('/rides/{id}', [RideController::class, 'update'])->name('rides.update');
     Route::delete('/rides/{id}', [RideController::class, 'destroy'])->name('rides.destroy');
+    Route::get('/rides/{id}/start', [RideController::class, 'iniciarRide'])->name('rides.start');
+    Route::get('/rides/realized', [RideController::class, 'realizedRides'])->name('rides.realized');
 });
+
 
 // Rutas para paneles de pasajeros (protegidas con middleware)
 Route::middleware('auth.user')->group(function () {
     Route::get('/passenger/search-rides', [PassengerController::class, 'searchRides'])->name('passenger.search.rides');
-    Route::get('/passenger/my-reservations', [PassengerController::class, 'myReservations'])->name('passenger.reservations');
-    Route::get('/passenger/my-trips', [PassengerController::class, 'myTrips'])->name('passenger.trips');
 });
 
 
+// Rutas de reservas
+Route::middleware('auth.user')->group(function () {
+    //Booking for passengers
+    Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/my-reservations', [BookingController::class, 'getReservations'])->name('bookings.reservations');
+    Route::post('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
+    Route::post('/bookings/{id}/accept', [BookingController::class, 'accept'])->name('bookings.accept');
+    //Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
 
+    //Booking for drivers
+    Route::get('/bookings/reservationsDriver', [BookingController::class, 'getReservationsDriver'])->name('bookings.driver.reservations');
+});
 
+// Rutas de admin
+Route::middleware('auth.user')->group(function () {
+    Route::get('/admin/add', [UserController::class, 'showAddAdminForm'])->name('admin.add.form');
+    //El store se hace con la misma funcion del register normal
+    Route::get('/admin/desactivate-users', [UserController::class, 'showDesactivateUsersForm'])->name('admin.desactivate.users.form');
+    Route::post('/admin/{id}/desactivate-user', [UserController::class, 'desactivateUser'])->name('admin.desactivate.user');
+    Route::post('/admin/{id}/activate-user', [UserController::class, 'activateUser'])->name('admin.activate.user');
+    Route::get('/admin/reports', [AuditController::class, 'getAudits'])->name('admin.reports');
+});

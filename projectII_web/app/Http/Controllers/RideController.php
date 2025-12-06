@@ -146,4 +146,30 @@ class RideController extends Controller
             ->with('msg', 'ride_error')
             ->with('type', 'error');
     }
+    public function iniciarRide($idRide)
+    {
+        $result = $this->rideService->iniciarRide($idRide);
+
+        if ($result['success']) {
+            return redirect()->back()
+                ->with('msg', 'ride_started')
+                ->with('type', 'success');
+        }
+
+        return redirect()->back()
+            ->with('msg', 'ride_error')
+            ->with('type', 'error');
+    }
+    public function realizedRides()
+    {
+        $authService = app(AuthService::class);
+        $user = $authService->getAuthenticatedUser();
+        $rides = $this->rideService->getRealizedRidesByDriver($user['idUsuario']);
+
+        return view('dashboard.main', [
+            'content' => 'driver.rides.list-realized',
+            'rides' => $rides,
+            'user' => $user
+        ]);
+    }
 }

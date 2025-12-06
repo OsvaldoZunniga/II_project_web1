@@ -58,14 +58,190 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+
+# Notes #
+**Para inicializar el proyecto se debe ejecutar**
+```
+php artisan migrate
+```
+
+Esto creará las tablas faltantes a la base de datos.
+
+
+
 # In Charge of: #
 ### Coffe ###
-- CRUD Users
-- Admin
-- rides
-- Reservas
+- ~~CRUD Users~~
+- ~~Admin~~
+- ~~rides~~ agregar boton para que el chofer inicialice ride
+- ~~Reservas~~
 ### BranchK ###
-- Registro
-- logIN
-- Vehiculos
-- publicPage
+- ~~Registro~~
+- ~~logIN~~
+- ~~Vehiculos~~
+- ~~publicPage~~
+
+### ?? ###
+- ~~Auditoria~~
+- PassLess
+
+```
+II_project_web1
+├─ projectII_web
+│  ├─ .editorconfig
+│  ├─ .env
+│  ├─ .gitattributes
+│  ├─ .gitignore
+│  ├─ app
+│  │  ├─ Http
+│  │  │  ├─ Controllers
+│  │  │  │  ├─ AuditController.php
+│  │  │  │  ├─ AuthController.php
+│  │  │  │  ├─ BookingController.php
+│  │  │  │  ├─ Controller.php
+│  │  │  │  ├─ DashboardController.php
+│  │  │  │  ├─ PassengerController.php
+│  │  │  │  ├─ ProfileController.php
+│  │  │  │  ├─ PublicRidesController.php
+│  │  │  │  ├─ RideController.php
+│  │  │  │  ├─ UserController.php
+│  │  │  │  └─ VehicleController.php
+│  │  │  └─ Middleware
+│  │  │     └─ AuthenticateUser.php
+│  │  ├─ Models
+│  │  │  ├─ Audit.php
+│  │  │  ├─ Booking.php
+│  │  │  ├─ Ride.php
+│  │  │  ├─ Role.php
+│  │  │  ├─ User.php
+│  │  │  └─ Vehicle.php
+│  │  ├─ Providers
+│  │  │  └─ AppServiceProvider.php
+│  │  └─ Services
+│  │     ├─ AuditService.php
+│  │     ├─ AuthService.php
+│  │     ├─ bookingService.php
+│  │     ├─ EmailService.php
+│  │     ├─ FileUploadService.php
+│  │     ├─ ProfileService.php
+│  │     ├─ RideService.php
+│  │     ├─ UserService.php
+│  │     └─ VehicleService.php
+│  ├─ artisan
+│  ├─ bootstrap
+│  │  ├─ app.php
+│  │  ├─ cache
+│  │  │  ├─ .gitignore
+│  │  │  ├─ packages.php
+│  │  │  └─ services.php
+│  │  └─ providers.php
+│  ├─ composer.json
+│  ├─ composer.lock
+│  ├─ config
+│  │  ├─ app.php
+│  │  ├─ auth.php
+│  │  ├─ cache.php
+│  │  ├─ database.php
+│  │  ├─ filesystems.php
+│  │  ├─ logging.php
+│  │  ├─ mail.php
+│  │  ├─ queue.php
+│  │  ├─ services.php
+│  │  └─ session.php
+│  ├─ database
+│  │  ├─ .gitignore
+│  │  ├─ database.sqlite
+│  │  ├─ factories
+│  │  │  └─ UserFactory.php
+│  │  ├─ migrations
+│  │  │  ├─ 0001_01_01_000000_create_users_table.php
+│  │  │  ├─ 0001_01_01_000001_create_cache_table.php
+│  │  │  ├─ 0001_01_01_000002_create_jobs_table.php
+│  │  │  ├─ 2025_11_28_051326_create_roles_table.php
+│  │  │  ├─ 2025_11_28_051405_create_usuarios_table.php
+│  │  │  ├─ 2025_11_28_051417_create_vehiculos_table.php
+│  │  │  ├─ 2025_11_28_051427_create_ride_table.php
+│  │  │  └─ 2025_11_28_051445_create_reserva_table.php
+│  │  └─ seeders
+│  │     └─ DatabaseSeeder.php
+│  ├─ package.json
+│  ├─ phpunit.xml
+│  ├─ public
+│  │  ├─ .htaccess
+│  │  ├─ assets
+│  │  │  ├─ 1764110915_1761284793_Snoopy.jpg
+│  │  │  ├─ 1764111622_1761458026_Charlie_Brown.png
+│  │  │  ├─ 1764898111_1761448200_2ebd46c01b64b3ee31d68f38ac3425c8.jpg
+│  │  │  ├─ 1764898735_1761285629_Snoopy.jpg
+│  │  │  ├─ 1764920360_1761453817_1761452832_1761284793_Snoopy.jpg
+│  │  │  ├─ default-profile.png
+│  │  │  └─ logo.jpg
+│  │  ├─ css
+│  │  │  └─ login.css
+│  │  ├─ database
+│  │  │  ├─ db.sql
+│  │  │  ├─ functions.sql
+│  │  │  └─ usefulqueries.sql
+│  │  ├─ favicon.ico
+│  │  ├─ index.php
+│  │  └─ robots.txt
+│  ├─ resources
+│  │  ├─ css
+│  │  │  └─ app.css
+│  │  ├─ js
+│  │  │  ├─ app.js
+│  │  │  └─ bootstrap.js
+│  │  └─ views
+│  │     ├─ auth
+│  │     │  ├─ login.blade.php
+│  │     │  └─ register.blade.php
+│  │     ├─ components
+│  │     │  ├─ ride-card-base.blade.php
+│  │     │  ├─ ride-card-driver.blade.php
+│  │     │  ├─ ride-card-passenger.blade.php
+│  │     │  ├─ ride-card-public.blade.php
+│  │     │  └─ ride-card-searched.blade.php
+│  │     ├─ dashboard
+│  │     │  ├─ admin
+│  │     │  │  ├─ add.blade.php
+│  │     │  │  ├─ audit.blade.php
+│  │     │  │  └─ desactivate-users.blade.php
+│  │     │  ├─ driver
+│  │     │  │  ├─ reservations
+│  │     │  │  │  └─ reservations.blade.php
+│  │     │  │  ├─ rides
+│  │     │  │  │  ├─ add.blade.php
+│  │     │  │  │  ├─ edit.blade.php
+│  │     │  │  │  ├─ list-realized.blade.php
+│  │     │  │  │  └─ list.blade.php
+│  │     │  │  └─ vehicles
+│  │     │  │     ├─ add.blade.php
+│  │     │  │     ├─ card.blade.php
+│  │     │  │     ├─ edit.blade.php
+│  │     │  │     └─ list.blade.php
+│  │     │  ├─ main.blade.php
+│  │     │  ├─ navs
+│  │     │  │  ├─ nav-admin.blade.php
+│  │     │  │  ├─ nav-chofer.blade.php
+│  │     │  │  └─ nav-pasajero.blade.php
+│  │     │  ├─ passenger
+│  │     │  │  ├─ my-reservations.blade.php
+│  │     │  │  └─ search-rides.blade.php
+│  │     │  └─ profile
+│  │     │     └─ edit.blade.php
+│  │     ├─ public
+│  │     │  └─ rides.blade.php
+│  │     └─ welcome.blade.php
+│  ├─ routes
+│  │  ├─ console.php
+│  │  └─ web.php
+│  ├─ tests
+│  │  ├─ Feature
+│  │  │  └─ ExampleTest.php
+│  │  ├─ TestCase.php
+│  │  └─ Unit
+│  │     └─ ExampleTest.php
+│  └─ vite.config.js
+└─ readme.md
+
+```

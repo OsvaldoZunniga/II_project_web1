@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\AuthService;
 
 class UserController extends Controller
 {
@@ -70,4 +71,53 @@ class UserController extends Controller
         
         return redirect()->route('login')->with('msg', $result);
     }
+    /*
+        AdminSection
+    */ 
+    
+
+    /*Mostrar Form para ingresar nuevos Admins*/
+    public function showAddAdminForm()
+    {
+        $authService = app(AuthService::class);
+        $user = $authService->getAuthenticatedUser();
+
+        return view('dashboard.main', [
+                'content' => 'admin.add',
+                'user' => $user
+            ]);
+    }
+    /*Mostrar Form para desactivar usuarios*/
+    public function showDesactivateUsersForm()
+    {
+        $authService = app(AuthService::class);
+        $user = $authService->getAuthenticatedUser();
+
+        $usersList = $this->userService->getAllUsersWithRole();
+
+        return view('dashboard.main', [
+                'content' => 'admin.desactivate-users',
+                'user' => $user,
+                'usersList' => $usersList
+            ]);
+    }
+    /*Desactiva un usuario*/
+    public function desactivateUser($idUsuario){
+        $this->userService->desactivateUserById($idUsuario);
+
+        return redirect()->back()
+                ->with('msg', 'user_desactivated')
+                ->with('type', 'success');
+    }
+    /*Activa un usuario*/
+    public function activateUser($idUsuario){
+        $this->userService->activateUserById($idUsuario);
+        
+        return redirect()->back()
+                ->with('msg', 'user_activated')
+                ->with('type', 'success');
+    }
+
+
+
 }

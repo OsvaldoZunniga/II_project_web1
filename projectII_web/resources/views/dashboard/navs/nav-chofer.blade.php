@@ -27,8 +27,10 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('rides.add') }}"><i class="fas fa-plus me-1"></i>Crear un Ride</a></li>
             <li><a class="dropdown-item" href="{{ route('rides.my') }}"><i class="fas fa-list me-1"></i>Ver Mis Rides</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-clipboard-list me-1"></i>Ver Mis Reservaciones</a></li>
+            <li><a class="dropdown-item" href="{{ route('bookings.driver.reservations')  }}"><i class="fas fa-clipboard-list me-1"></i>Ver Reservaciones Pendientes</a></li>
+            <li><a class="dropdown-item" href="{{ route('rides.realized')  }}"><i class="fas fa-clipboard-list me-1"></i>Rides Realizados</a></li>
           </ul>
+          
         </li>
       </ul>
 

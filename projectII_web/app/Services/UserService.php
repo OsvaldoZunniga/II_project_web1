@@ -106,4 +106,29 @@ class UserService
     {
         return User::where('correo', $correo)->exists();
     }
+    /**
+     * Obtener todos los usuarios
+     */
+    public function getAllUsersWithRole(){
+        return User::select('usuarios.*', 'roles.nombreRol')
+                    ->join('roles', 'usuarios.idRoles', '=', 'roles.idRoles')
+                    ->get();
+    }
+    public function desactivateUserById($idUsuario)
+    {
+        $user = User::find($idUsuario);
+        if ($user) {
+            $user->estado = 'Inactivo';
+            $user->save();
+        }
+    }
+    public function activateUserById($idUsuario)
+    {
+        $user = User::find($idUsuario);
+        if ($user) {
+            $user->estado = 'Activo';
+            $user->token = null;
+            $user->save();
+        }
+    }
 }
