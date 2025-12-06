@@ -36,6 +36,10 @@ class PassengerController extends Controller
         // Obtener rides disponibles usando el service
         $rides = collect($this->rideService->obtenerRidesDisponibles($filtros, $orden));
         
+        //Aqui se guardará los datos para auditoria de busqueda de rides
+        if ($request['search-button'] === 'is-pressed') {
+            $this->rideService->guardarAuditoriaBusqueda($user, $filtros, $rides);
+        }
         // Devolver vista del dashboard main con el contenido de búsqueda
         return view('dashboard.main', [
             'content' => 'passenger.search-rides',

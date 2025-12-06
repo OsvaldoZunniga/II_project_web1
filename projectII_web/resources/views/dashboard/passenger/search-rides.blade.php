@@ -16,6 +16,7 @@
                 <div class="card fondo text-white shadow border-0">
                     <div class="card-body p-4">
                         <form method="GET" action="{{ route('passenger.search.rides') }}">
+                            <input type="hidden" name="search-button" value="is-pressed">
                             <div class="row g-3">
                                 <!-- Búsqueda por ubicaciones -->
                                 <div class="col-md-4">
