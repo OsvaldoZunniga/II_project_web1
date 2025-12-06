@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #1A281E; color: #fefce0;">
         <div class="container-fluid px-4">
             <a class="navbar-brand d-flex align-items-center text-decoration-none" href="{{ route('login') }}" style="color: #fefce0;">
-                <span class="fw-bold">RideConnect</span>
+                <span class="fw-bold">AventonesCR</span>
             </a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="{{ route('login') }}" style="color: #fefce0;">
