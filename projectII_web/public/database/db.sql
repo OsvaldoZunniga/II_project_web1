@@ -55,5 +55,12 @@ CREATE TABLE reserva(
     CONSTRAINT fk_reserva_usuarios FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
     CONSTRAINT fk_reserva_ride FOREIGN KEY (idRide) REFERENCES ride(idRide)
 ); 
-
-
+CREATE TABLE auditoria(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE DEFAULT (CURRENT_DATE),
+    idUsuario int not null,
+    salida VARCHAR(50) not null,
+    llegada VARCHAR(50) not null,
+    cantidadResultados INT not null,
+    CONSTRAINT idUsuario FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
+);
