@@ -25,11 +25,13 @@ class User extends Model{
         'estado',
         'contrasena',
         'token',
+        'login_token',
         'idRoles'
     ];
     protected $hidden = [
         'contrasena',
-        'token'
+        'token',
+        'login_token'
     ];
     public $casts = [
         'idUsuario' => 'integer',
