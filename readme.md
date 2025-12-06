@@ -82,7 +82,7 @@ Esto creará las tablas faltantes a la base de datos.
 - ~~publicPage~~
 
 ### ?? ###
-- Auditoria
+- ~~Auditoria~~
 - PassLess
 
 ```
@@ -95,6 +95,7 @@ II_project_web1
 │  ├─ app
 │  │  ├─ Http
 │  │  │  ├─ Controllers
+│  │  │  │  ├─ AuditController.php
 │  │  │  │  ├─ AuthController.php
 │  │  │  │  ├─ BookingController.php
 │  │  │  │  ├─ Controller.php
@@ -108,6 +109,7 @@ II_project_web1
 │  │  │  └─ Middleware
 │  │  │     └─ AuthenticateUser.php
 │  │  ├─ Models
+│  │  │  ├─ Audit.php
 │  │  │  ├─ Booking.php
 │  │  │  ├─ Ride.php
 │  │  │  ├─ Role.php
@@ -116,6 +118,7 @@ II_project_web1
 │  │  ├─ Providers
 │  │  │  └─ AppServiceProvider.php
 │  │  └─ Services
+│  │     ├─ AuditService.php
 │  │     ├─ AuthService.php
 │  │     ├─ bookingService.php
 │  │     ├─ EmailService.php
@@ -163,13 +166,14 @@ II_project_web1
 │  │     └─ DatabaseSeeder.php
 │  ├─ package.json
 │  ├─ phpunit.xml
-│  ├─ pnpm-lock.yaml
-│  ├─ pnpm-workspace.yaml
 │  ├─ public
 │  │  ├─ .htaccess
 │  │  ├─ assets
 │  │  │  ├─ 1764110915_1761284793_Snoopy.jpg
 │  │  │  ├─ 1764111622_1761458026_Charlie_Brown.png
+│  │  │  ├─ 1764898111_1761448200_2ebd46c01b64b3ee31d68f38ac3425c8.jpg
+│  │  │  ├─ 1764898735_1761285629_Snoopy.jpg
+│  │  │  ├─ 1764920360_1761453817_1761452832_1761284793_Snoopy.jpg
 │  │  │  ├─ default-profile.png
 │  │  │  └─ logo.jpg
 │  │  ├─ css
@@ -195,14 +199,20 @@ II_project_web1
 │  │     │  ├─ ride-card-base.blade.php
 │  │     │  ├─ ride-card-driver.blade.php
 │  │     │  ├─ ride-card-passenger.blade.php
-│  │     │  └─ ride-card-public.blade.php
+│  │     │  ├─ ride-card-public.blade.php
+│  │     │  └─ ride-card-searched.blade.php
 │  │     ├─ dashboard
 │  │     │  ├─ admin
+│  │     │  │  ├─ add.blade.php
+│  │     │  │  ├─ audit.blade.php
+│  │     │  │  └─ desactivate-users.blade.php
 │  │     │  ├─ driver
 │  │     │  │  ├─ reservations
+│  │     │  │  │  └─ reservations.blade.php
 │  │     │  │  ├─ rides
 │  │     │  │  │  ├─ add.blade.php
 │  │     │  │  │  ├─ edit.blade.php
+│  │     │  │  │  ├─ list-realized.blade.php
 │  │     │  │  │  └─ list.blade.php
 │  │     │  │  └─ vehicles
 │  │     │  │     ├─ add.blade.php
@@ -225,28 +235,6 @@ II_project_web1
 │  ├─ routes
 │  │  ├─ console.php
 │  │  └─ web.php
-│  ├─ storage
-│  │  ├─ app
-│  │  │  ├─ .gitignore
-│  │  │  ├─ private
-│  │  │  │  └─ .gitignore
-│  │  │  └─ public
-│  │  │     └─ .gitignore
-│  │  ├─ framework
-│  │  │  ├─ .gitignore
-│  │  │  ├─ cache
-│  │  │  │  ├─ .gitignore
-│  │  │  │  └─ data
-│  │  │  │     └─ .gitignore
-│  │  │  ├─ sessions
-│  │  │  │  └─ .gitignore
-│  │  │  ├─ testing
-│  │  │  │  └─ .gitignore
-│  │  │  └─ views
-│  │  │     └─ .gitignore
-│  │  └─ logs
-│  │     ├─ .gitignore
-│  │     └─ laravel.log
 │  ├─ tests
 │  │  ├─ Feature
 │  │  │  └─ ExampleTest.php
