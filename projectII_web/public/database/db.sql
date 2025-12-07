@@ -15,6 +15,7 @@ CREATE TABLE usuarios(
     estado VARCHAR(30) DEFAULT 'Pendiente',
     contrasena VARCHAR(300) NOT NULL,
     token VARCHAR(255),
+    login_token VARCHAR(255),
     idRoles INT NOT NULL, 
     CONSTRAINT fk_usuarios_roles FOREIGN KEY (idRoles) REFERENCES roles(idRoles)
 );
