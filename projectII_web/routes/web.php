@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\PublicRidesController;
 use App\Http\Controllers\PassengerController;
+use App\Http\Controllers\PasswordlessController;
 
 // Autenticación
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -23,6 +24,10 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 
 // Activación de cuenta
 Route::get('/activate', [UserController::class, 'activate'])->name('activate');
+
+// Passwordless Login
+Route::post('/passwordless/send', [PasswordlessController::class, 'sendLoginLink'])->name('passwordless.send');
+Route::get('/passwordless-login/{token}', [PasswordlessController::class, 'loginWithToken'])->name('passwordless.login');
 
 // Página pública de rides (sin middleware, accesible sin autenticación)
 Route::get('/public-rides', [PublicRidesController::class, 'index'])->name('public.rides');
