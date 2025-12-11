@@ -5,10 +5,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 // Configuración de base de datos (ajustar según tu .env)
-$host = 'localhost';
+$host = '127.0.0.1';
 $username = 'root';
 $password = '';
-$database = 'proyecto02';
+$database = 'subiteyreza';
 
 function getConnection_BD() {
     global $host, $username, $password, $database;

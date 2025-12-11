@@ -56,7 +56,6 @@ class UserController extends Controller
 
     /**
      * Activar cuenta de usuario
-     * Solo coordina, delega la lógica al servicio
      */
     public function activate(Request $request)
     {
