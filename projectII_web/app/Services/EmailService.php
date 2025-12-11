@@ -98,7 +98,7 @@ class EmailService
             <p><strong>Haz clic en el siguiente botón para ingresar a tu cuenta:</strong></p>
             <div style='text-align: center; margin: 20px 0;'>
                 <a href='{$loginLink}' style='background-color: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-size: 16px; display: inline-block;'>
-                    🔐 Ingresar a mi cuenta
+                    Ingresar a mi cuenta
                 </a>
             </div>
             <p><strong>Importante:</strong></p>

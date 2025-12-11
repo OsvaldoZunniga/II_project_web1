@@ -1,0 +1,107 @@
+<?php
+// Ejecutar: php scripts/notificar_reservas.php 1440 para revisar de mas de un dia
+
+require_once __DIR__ . '/../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+
+// Configuración de base de datos (ajustar según tu .env)
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'proyecto02';
+
+function getConnection_BD() {
+    global $host, $username, $password, $database;
+    $conn = new mysqli($host, $username, $password, $database);
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+    return $conn;
+}
+
+//el número de minutos desde la línea de comandos o usar 30 por defecto
+$minutos = $argv[1] ?? 30;
+echo "Buscando reservas pendientes de más de {$minutos} minutos...\n";
+
+$conn = getConnection_BD();
+
+//Minutos_transcurridos es cuántos minutos han pasado desde que se hizo la reserva hasta ahora- obtiene información del ride asociado a la reserva
+//Obtien e también información del chofer y pasajero
+
+$sql = "SELECT r.idReserva, r.fecha,
+               TIMESTAMPDIFF(MINUTE, r.fecha, NOW()) as minutos_transcurridos, 
+               ride.nombre as ride_nombre, ride.salida, ride.llegada, 
+               ride.fecha as fecha_viaje, ride.hora,
+               pasajero.nombre as pasajero_nombre,
+               chofer.nombre as chofer_nombre, chofer.correo as chofer_correo
+        FROM reserva r
+        JOIN ride ON r.idRide = ride.idRide
+        JOIN vehiculos v ON ride.idVehiculo = v.idVehiculo
+        JOIN usuarios chofer ON v.idUsuario = chofer.idUsuario
+        JOIN usuarios pasajero ON r.idUsuario = pasajero.idUsuario
+        WHERE r.estado = 'Pendiente' AND TIMESTAMPDIFF(MINUTE, r.fecha, NOW()) > ?
+        ORDER BY chofer.correo";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $minutos);
+$stmt->execute();
+$reservas = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+if (empty($reservas)) {
+    echo "No hay reservas pendientes.\n";
+    exit();
+}
+
+echo "Encontradas " . count($reservas) . " reservas pendientes.\n";
+
+$choferes = []; // agrupa reservas por chofer
+foreach ($reservas as $reserva) {
+    $correo = $reserva['chofer_correo']; // agrupa por correo del chofer
+    $choferes[$correo]['nombre'] = $reserva['chofer_nombre']; 
+    $choferes[$correo]['reservas'][] = $reserva; //sub array de reservas de ese chofer
+}
+
+$enviados = 0;
+foreach ($choferes as $correo => $datos) { //correo es clave y datos es el valor (nombre y reservas)
+    echo "Enviando correo a: {$datos['nombre']} ({$correo})... "; 
+    
+    $lista = ""; // lista de reservas
+    foreach ($datos['reservas'] as $r) { // recorremos las reservas de ese chofer
+        $lista .= "- Reserva #{$r['idReserva']}: {$r['ride_nombre']}<br>";
+        $lista .= "  Pasajero: {$r['pasajero_nombre']}<br>";
+        $lista .= "  Ruta: {$r['salida']} → {$r['llegada']}<br>";
+        $lista .= "  Fecha: {$r['fecha_viaje']} a las {$r['hora']}<br><br>";
+    }
+    
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'aventomescr@gmail.com';
+        $mail->Password = 'ubon jmov ryip sxmk'; 
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->setFrom('aventomescr@gmail.com', 'AventonesCR');
+        $mail->addAddress($correo, $datos['nombre']);
+        $mail->isHTML(true);
+        $mail->Subject = 'Solicitudes de reserva pendientes';
+        
+        $mail->Body = "Hola {$datos['nombre']},<br><br>
+                       Tienes " . count($datos['reservas']) . " solicitud(es) pendiente(s):<br><br>
+                       {$lista}
+                       Revisa tu panel para aceptar o rechazar.<br><br>
+                       Saludos,<br>AventonesCR";
+
+        $mail->send();
+        echo "Enviado\n";
+        $enviados++;
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage() . "\n";
+    }
+}
+
+echo "\nResumen: {$enviados} correos enviados, " . count($reservas) . " reservas.\n";
+$conn->close();
+?>
