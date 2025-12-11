@@ -1,7 +1,6 @@
 <?php
     namespace App\Http\Controllers;
 
-
     use Illuminate\Http\Request;
     use App\Services\AuditService;
     use App\Services\AuthService;
@@ -15,8 +14,10 @@
         {
             $this->auditService = $auditService;
         }
-
-
+        
+        /**
+         * Mostrar datos de auditoría
+         */
 
         public function getAudits()
         {
