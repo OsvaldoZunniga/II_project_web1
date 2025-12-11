@@ -20,10 +20,12 @@ class PasswordlessController extends Controller
      */
     public function sendLoginLink(Request $request)
     {
+        //validamos el email
         $request->validate([
             'email' => 'required|email'
         ]);
 
+        //delegamos al servicio
         $result = $this->passwordlessService->sendLoginLink($request->email);
 
         if ($result['success']) {
