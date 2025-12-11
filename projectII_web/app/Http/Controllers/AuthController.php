@@ -15,7 +15,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Mostrar la página de login
+     * Mostrar la página de login (hace que si no cierra sesion, no pueda volver al login)
      */
     public function showLogin(Request $request)
     {
