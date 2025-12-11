@@ -34,7 +34,6 @@ class AuthController extends Controller
 
     /**
      * Procesar el login
-     * Solo coordina, delega la lógica al servicio
      */
     public function login(Request $request)
     {
@@ -68,7 +67,6 @@ class AuthController extends Controller
 
     /**
      * Cerrar sesión
-     * Solo coordina, delega la lógica al servicio
      */
     public function logout(Request $request)
     {
