@@ -40,7 +40,7 @@
             <div class="col-12">
                 <div class="card fondo text-white shadow border-0">
                     <div class="card-body p-4">
-                        <form method="GET" action="{{ route('public.rides') }}">
+                        <form method="GET" action="{{ route('public.rides') }}">                         
                             <div class="row g-3">
                                 <!-- Búsqueda por ubicaciones -->
                                 <div class="col-md-4">
