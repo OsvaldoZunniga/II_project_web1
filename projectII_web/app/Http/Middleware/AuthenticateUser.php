@@ -18,9 +18,10 @@ class AuthenticateUser
     public function handle(Request $request, Closure $next)
     {
         if (!$this->authService->isAuthenticated()) {
+            //si no hay sesion valida, redirige al login
             return redirect()->route('login')->with('msg', 'login_required');
         }
 
-        return $next($request);
+        return $next($request); //si la sesion es valida, continua
     }
 }

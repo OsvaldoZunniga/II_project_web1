@@ -69,7 +69,7 @@ class AuthService
      */
     public function isAuthenticated(): bool
     {
-        return Session::get('authenticated', false);
+        return Session::get('authenticated', false); //lee el archivo de la sesión
     }
 
     /**
@@ -78,7 +78,7 @@ class AuthService
     public function getAuthenticatedUser(): ?array
     {
         if (!$this->isAuthenticated()) {
-            return null;
+            return null; //si no hay sesion valida regresa null
         }
 
         return [
