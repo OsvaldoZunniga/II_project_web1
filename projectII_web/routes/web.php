@@ -77,7 +77,7 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/bookings/my-reservations', [BookingController::class, 'getReservations'])->name('bookings.reservations');
     Route::post('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
     Route::post('/bookings/{id}/accept', [BookingController::class, 'accept'])->name('bookings.accept');
-    //Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
+    Route::get('/bookings/my-trips', [BookingController::class, 'myTrips'])->name('bookings.trips');
 
     //Booking for drivers
     Route::get('/bookings/reservationsDriver', [BookingController::class, 'getReservationsDriver'])->name('bookings.driver.reservations');

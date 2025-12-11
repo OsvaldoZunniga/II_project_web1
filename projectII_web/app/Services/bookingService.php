@@ -76,6 +76,8 @@
                 )
                 ->join('usuarios as u', 'res.idUsuario', '=', 'u.idUsuario')
                 ->join('ride as r', 'res.idRide', '=', 'r.idRide')
+                ->join('vehiculos as v', 'r.idVehiculo', '=', 'v.idVehiculo')
+                ->where('v.idUsuario', $idUsuario)
                 ->where('res.estado', 'Pendiente')
                 ->whereRaw('LOWER(r.estado) <> ?', ['realizado'])
                 ->whereDate('r.fecha', '>=', $today)
@@ -85,6 +87,32 @@
             return $results->map(function($item){
                 return (array) $item;
             })->all();
+        }
+        public function getCompletedTripsByUser($idUsuario)
+        {
+            return DB::table('reserva as res')
+                ->select(
+                    'res.idReserva',
+                    'res.idUsuario',
+                    'res.estado as reserva_estado',
+                    'r.idRide',
+                    'r.nombre as ride_nombre',
+                    'r.salida',
+                    'r.llegada',
+                    'r.fecha',
+                    'r.hora',
+                    'r.espacios',
+                    'r.costo_espacio',
+                    'r.estado as ride_estado'
+                )
+                ->join('ride as r', 'res.idRide', '=', 'r.idRide')
+                ->where('res.idUsuario', $idUsuario)
+                ->whereRaw('LOWER(r.estado) = ?', ['realizado'])
+                ->orderByDesc('r.fecha')
+                ->get()
+                ->map(function($item){
+                    return (array) $item;
+                })->all();
         }
 
         

@@ -82,6 +82,18 @@
                 ->with('msg', 'booking_cancelled')
                 ->with('type', 'success');
         }
+        /*Obtiene los viajes realizados por el pasajero*/
+        public function myTrips()
+        {
+            $authService = app(AuthService::class);
+            $user = $authService->getAuthenticatedUser();
+            $trips = $this->bookingService->getCompletedTripsByUser($user['idUsuario']);
+            return view('dashboard.main', [
+                'content' => 'passenger.my-trips',
+                'user' => $user,
+                'trips' => $trips
+            ]);
+        }
 
         
     }

@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="">
+          <a class="nav-link text-white" href="{{ route('bookings.trips') }}">
             <i class="fas fa-check-circle me-1"></i>Mis Viajes
           </a>
         </li>
